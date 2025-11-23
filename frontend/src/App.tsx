@@ -1,9 +1,9 @@
+import HomePage from "./components/page-layout/home-page";
+
 function App() {
 
   return (
-    <div className="text-4xl">
-      Welcome to Overwatch Hero Picker.
-    </div>
+    <HomePage />
   );
 }
 
