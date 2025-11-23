@@ -2,11 +2,16 @@ import type React from "react";
 import { useState } from "react";
 import CheckBox from "../ui/check-box";
 
-const HeroInfo: React.FC = () => {
+interface HeroInfoProps {
+    heroName: string;
+}
+
+const HeroInfo: React.FC<HeroInfoProps> = ({ heroName }) => {
     const [isHeroDisplayed, setIsHeroDisplayed] = useState<boolean>(false);
 
     return (
         <div className="flex flex-col space-y-4 items-center">
+            <h1 className="text-xl font-bold">{heroName}</h1>
             <ShowHeroImageCheckBox displayHero={isHeroDisplayed} setDisplayHero={setIsHeroDisplayed} />
             {isHeroDisplayed && <HeroImage />}
         </div>
