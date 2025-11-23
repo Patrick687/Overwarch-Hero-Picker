@@ -6,7 +6,7 @@ import GetNewHeroButton from "../left-panel/get-new-hero-button";
 
 const LeftPanel: React.FC = () => {
     return (
-        <div className="h-full w-1/4 flex flex-col items-center justify-start p-4 space-y-4 bg-gray-600">
+        <div className="h-full w-1/4 flex flex-col items-center justify-start p-6 space-y-6 bg-[#1C1C1E] border-r-2 border-[#2A2A2C] overflow-y-auto">
             <HeroInfo heroName="Sigma" />
             <RandomPerksSection />
             <Divider color="white" />

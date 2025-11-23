@@ -2,8 +2,8 @@ import type React from "react";
 
 const FilterInstructions: React.FC = () => {
     return (
-        <div className="w-full p-4 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg shadow-md border-2 border-orange-400">
-            <p className="text-white text-lg font-bold text-left uppercase tracking-wide">
+        <div className="w-full p-5 bg-gradient-to-r from-[#F99E1A] to-[#FF8C00] rounded-lg shadow-lg border-l-4 border-[#FFCF4A]">
+            <p className="text-white text-xl font-black uppercase tracking-widest">
                 Select the heroes you wish to play
             </p>
         </div>
