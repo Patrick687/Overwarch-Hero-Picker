@@ -13,7 +13,7 @@ export const heroes: Hero[] = [
     { name: "Sigma", role: "Tank", image: "/heros/sigma.webp", imageFace: "/heros/sigma-face.png" },
     { name: "Winston", role: "Tank", image: "/heros/winston.webp", imageFace: "/heros/winston-face.png" },
     { name: "Wrecking Ball", role: "Tank", image: "/heros/wreckingball.webp", imageFace: "/heros/wreckingball-face.png" },
-    { name: "Zarya", role: "Tank", image: "/heros/zarya.png", imageFace: "/heros/zarya.png" },
+    { name: "Zarya", role: "Tank", image: "/heros/zarya.png", imageFace: "/heros/zarya-face.png" },
 
     // Damage Heroes
     { name: "Ashe", role: "Damage", image: "/heros/ashe.webp", imageFace: "/heros/ashe-face.webp" },

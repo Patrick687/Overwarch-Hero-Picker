@@ -1,17 +1,24 @@
 import type React from "react";
 import type { Hero } from "../../../types/hero";
+import { useDispatch, useSelector } from "react-redux";
+import { type AppDispatch, type RootState } from "../../../store/app.store";
+import { toggleHeroSelection } from "../../../store/heros.slice";
 
 interface HeroCardProps {
     hero: Hero;
-    isSelected?: boolean;
-    onClick?: () => void;
 }
 
 const HeroCard: React.FC<HeroCardProps> = ({
     hero,
-    isSelected = false,
-    onClick
 }) => {
+    const dispatch = useDispatch<AppDispatch>();
+    const heroState = useSelector((state: RootState) => state.hero);
+    const isSelected = heroState.selectedHeroes.findIndex(h => h.name === hero.name) !== -1;
+
+    function onClick() {
+        dispatch(toggleHeroSelection(hero));
+    }
+
     return (
         <button
             onClick={onClick}

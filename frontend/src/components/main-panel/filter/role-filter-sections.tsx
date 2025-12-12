@@ -2,12 +2,7 @@ import type React from "react";
 import RoleSection from "./role-filter-section";
 import { getTankHeroes, getDamageHeroes, getSupportHeroes } from "../../../data/heroes";
 
-interface RoleFilterSectionsProps {
-    selectedHeroes: string[];
-    toggleHero: (heroName: string) => void;
-}
-
-const RoleFilterSections: React.FC<RoleFilterSectionsProps> = ({ selectedHeroes, toggleHero }) => {
+const RoleFilterSections: React.FC = () => {
     const tankHeroes = getTankHeroes();
     const damageHeroes = getDamageHeroes();
     const supportHeroes = getSupportHeroes();
@@ -19,8 +14,6 @@ const RoleFilterSections: React.FC<RoleFilterSectionsProps> = ({ selectedHeroes,
                 roleTitle="Tank"
                 roleColor="#4A9FFF"
                 heroes={tankHeroes}
-                selectedHeroes={selectedHeroes}
-                toggleHero={toggleHero}
             />
 
             {/* Damage Section */}
@@ -28,8 +21,6 @@ const RoleFilterSections: React.FC<RoleFilterSectionsProps> = ({ selectedHeroes,
                 roleTitle="Damage"
                 roleColor="#E74856"
                 heroes={damageHeroes}
-                selectedHeroes={selectedHeroes}
-                toggleHero={toggleHero}
             />
 
             {/* Support Section */}
@@ -37,8 +28,6 @@ const RoleFilterSections: React.FC<RoleFilterSectionsProps> = ({ selectedHeroes,
                 roleTitle="Support"
                 roleColor="#FFCF4A"
                 heroes={supportHeroes}
-                selectedHeroes={selectedHeroes}
-                toggleHero={toggleHero}
             />
         </div>
     );

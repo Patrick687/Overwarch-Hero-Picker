@@ -30,7 +30,7 @@ const HeroImage: React.FC<HeroImageProps> = ({ hero }) => {
     return (
         <div className="w-full flex justify-center">
             <img
-                src={hero.image}
+                src={hero.imageFace}
                 alt={hero.name}
                 className="w-full max-h-64 object-contain rounded-lg border-2 border-[#F99E1A] shadow-lg shadow-[#F99E1A]/20"
             />

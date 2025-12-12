@@ -1,38 +1,40 @@
-import HeroCard from "./hero-card";
 import type { Hero } from "../../../types/hero";
+import HeroCard from "./hero-card";
+import RoleSelectAllButton from "./role-select-all.button";
 
 interface RoleSectionProps {
     roleTitle: string;
     roleColor: string;
     heroes: Hero[];
-    selectedHeroes: string[];
-    toggleHero: (heroName: string) => void;
 }
 
 const RoleSection: React.FC<RoleSectionProps> = ({
     roleTitle,
     roleColor,
-    heroes,
-    selectedHeroes,
-    toggleHero
+    heroes
 }) => {
     return (
         <div className="w-full">
             {/* Role Header */}
             <div
-                className="flex items-center space-x-2 mb-2 pb-1 border-b-2"
+                className="flex items-center justify-between mb-2 pb-1 border-b-2"
                 style={{ borderColor: roleColor }}
             >
-                <div
-                    className="w-2 h-2 rounded-full"
-                    style={{ backgroundColor: roleColor }}
-                />
-                <h2
-                    className="text-lg font-black uppercase tracking-wide"
-                    style={{ color: roleColor }}
-                >
-                    {roleTitle}
-                </h2>
+                <div className="flex items-center space-x-2">
+                    <div
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: roleColor }}
+                    />
+                    <h2
+                        className="text-lg font-black uppercase tracking-wide"
+                        style={{ color: roleColor }}
+                    >
+                        {roleTitle}
+                    </h2>
+                </div>
+
+                {/* Select/Deselect All Button */}
+                <RoleSelectAllButton heroes={heroes} roleColor={roleColor} />
             </div>
 
             {/* Hero Cards Grid */}
@@ -41,8 +43,6 @@ const RoleSection: React.FC<RoleSectionProps> = ({
                     <HeroCard
                         key={hero.name}
                         hero={hero}
-                        isSelected={selectedHeroes.includes(hero.name)}
-                        onClick={() => toggleHero(hero.name)}
                     />
                 ))}
             </div>

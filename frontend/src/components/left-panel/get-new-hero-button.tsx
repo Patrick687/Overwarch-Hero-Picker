@@ -1,8 +1,13 @@
 import type React from "react";
+import { useDispatch } from "react-redux";
+import { type AppDispatch } from "../../store/app.store";
+import { generateCurrentHero } from "../../store/heros.slice";
 
 const GetNewHeroButton: React.FC = () => {
+    const dispatch = useDispatch<AppDispatch>();
+
     const handleClick = () => {
-        console.log("Getting new random hero...");
+        dispatch(generateCurrentHero());
     };
 
     return (
