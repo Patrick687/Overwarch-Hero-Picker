@@ -30,24 +30,21 @@ jobs:
           cd frontend
           npm run build
       
-      - name: Setup SSH Key
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: 'placeholder'
+      
+      - name: Add known hosts
+        run: ssh-keyscan -H ${{ secrets.DROPLET_IP }} >> ~/.ssh/known_hosts
+      
+      - name: Test SSH Connection
         run: |
-          mkdir -p ~/.ssh
-          cat > ~/.ssh/deploy_key <<EOF
-          ${{ secrets.SSH_PRIVATE_KEY }}
-          EOF
-          chmod 600 ~/.ssh/deploy_key
-          
-          echo "=== Checking key format ==="
-          ssh-keygen -l -f ~/.ssh/deploy_key
-          
-          echo "=== Testing SSH connection ==="
-          ssh -vvv -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o BatchMode=yes \
-            ${{ secrets.DROPLET_USERNAME }}@${{ secrets.DROPLET_IP }} \
-            "echo 'SSH connection successful!'" 2>&1 | tail -20
+          ssh ${{ secrets.DROPLET_USERNAME }}@${{ secrets.DROPLET_IP }} "echo 'SSH connection successful!'"
       
       - name: Deploy with rsync
         run: |
-          rsync -avz -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
+          rsync -avz --delete \
             frontend/dist/ \
             ${{ secrets.DROPLET_USERNAME }}@${{ secrets.DROPLET_IP }}:/var/www/owHeroPicker/
