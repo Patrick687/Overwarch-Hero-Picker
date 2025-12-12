@@ -11,12 +11,12 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '22.12.0'
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
       
@@ -36,6 +36,8 @@ jobs:
           host: ${{ secrets.DROPLET_IP }}
           username: ${{ secrets.DROPLET_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
           source: "frontend/dist/*"
           target: "/var/www/owHeroPicker/"
           strip_components: 2
+          overwrite: true
