@@ -1,6 +1,5 @@
 import type React from "react";
 import HeroInfo from "../left-panel/hero-info";
-import Divider from "../ui/divider";
 import GetNewHeroButton from "../left-panel/get-new-hero-button";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store/app.store";
@@ -15,7 +14,6 @@ const LeftPanel: React.FC = () => {
             {!selectedHero && <FilterInstructions />}
             {selectedHero && <HeroInfo hero={selectedHero} />}
             {/* <RandomPerksSection /> */}
-            <Divider color="white" />
             <GetNewHeroButton />
         </div>
     );
