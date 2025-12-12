@@ -30,31 +30,21 @@ jobs:
           cd frontend
           npm run build
       
-      - name: Setup SSH Key and Debug
+      - name: Setup SSH Key
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          cat > ~/.ssh/deploy_key <<EOF
+          ${{ secrets.SSH_PRIVATE_KEY }}
+          EOF
           chmod 600 ~/.ssh/deploy_key
           
-          echo "=== Checking SSH key file ==="
-          ls -la ~/.ssh/deploy_key
-          echo ""
-          
-          echo "=== First and last lines of key ==="
-          head -n 1 ~/.ssh/deploy_key
-          tail -n 1 ~/.ssh/deploy_key
-          echo ""
-          
           echo "=== Checking key format ==="
-          ssh-keygen -l -f ~/.ssh/deploy_key || echo "ERROR: Invalid key format!"
-          echo ""
+          ssh-keygen -l -f ~/.ssh/deploy_key
           
           echo "=== Testing SSH connection ==="
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o BatchMode=yes \
+          ssh -vvv -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o BatchMode=yes \
             ${{ secrets.DROPLET_USERNAME }}@${{ secrets.DROPLET_IP }} \
-            "echo 'SSH connection successful!'" || echo "ERROR: SSH connection failed!"
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            "echo 'SSH connection successful!'" 2>&1 | tail -20
       
       - name: Deploy with rsync
         run: |
