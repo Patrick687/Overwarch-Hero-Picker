@@ -1,7 +1,5 @@
 import type React from "react";
-import { useState } from "react";
 import type { Hero } from "../../types/hero";
-import CheckBox from "../ui/check-box";
 
 interface HeroInfoProps {
     hero: Hero;
